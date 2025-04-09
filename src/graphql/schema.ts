@@ -9,6 +9,10 @@ export const typeDefs = gql`
     age: Int!
     birthdate: String!
     nationality: String!
+    gender: String!
+    suffix: String!
+    civilStatus: String!
+    religion: String!
   }
 
   input ResidentFilter {
@@ -29,6 +33,10 @@ export const typeDefs = gql`
     age: Int!
     birthdate: String!
     nationality: String!
+    gender: String!
+    suffix: String
+    civilStatus: String!
+    religion: String!
   }
 
   type DeleteResidentResponse {

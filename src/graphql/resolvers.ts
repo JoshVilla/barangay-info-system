@@ -29,7 +29,13 @@ export const resolvers = {
     addResident: async (_: any, { input }: { input: any }) => {
       await connectToDatabase();
 
-      const newResident = new ResidentModel(input);
+      // If suffix is missing or falsy (undefined, null, ""), set default to empty string
+      const cleanedInput = {
+        ...input,
+        suffix: input.suffix || "", // 👈 default value
+      };
+
+      const newResident = new ResidentModel(cleanedInput);
       const savedResident = await newResident.save();
 
       return {
@@ -37,6 +43,7 @@ export const resolvers = {
         resident: savedResident,
       };
     },
+
     deleteResident: async (_: any, { id }: { id: string }) => {
       await connectToDatabase();
 

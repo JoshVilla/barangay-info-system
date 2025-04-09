@@ -7,6 +7,10 @@ const ResidentSchema = new mongoose.Schema({
   age: Number,
   birthdate: String,
   nationality: String,
+  suffix: String,
+  gender: String,
+  civilStatus: String,
+  religion: String,
 });
 
 export const ResidentModel =
