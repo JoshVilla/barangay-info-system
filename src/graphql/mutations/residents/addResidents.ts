@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
-export const GET_RESIDENTS = gql`
-  query GetResidents($filter: ResidentFilter) {
-    residents(filter: $filter) {
+export const ADD_RESIDENT = gql`
+  mutation AddResident($input: AddResidentInput!) {
+    addResident(input: $input) {
       id
       firstname
       middlename

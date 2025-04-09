@@ -5,6 +5,18 @@ import { GET_RESIDENTS } from "@/graphql/queries/residents/getResidents";
 import { useLazyQuery } from "@apollo/client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { headers } from "./tableProps";
+import { IResidents } from "@/graphql/queries/residents/responseTypes";
+import AddResident from "./addResident";
 
 const Page = () => {
   // Filter state
@@ -31,14 +43,13 @@ const Page = () => {
     getResidents({ variables: { filter } });
   };
 
-  // Reset the filter and clear the results
   const handleReset = () => {
     setFilter({
       firstname: "",
       middlename: "",
       lastname: "",
     });
-    // Optionally: Refetch with empty filter or not refetch at all
+    getResidents({ variables: { filter: {} } });
   };
 
   useEffect(() => {
@@ -81,20 +92,36 @@ const Page = () => {
         <Button size="sm" onClick={handleReset}>
           Reset Filters
         </Button>
+        <AddResident />
       </div>
 
-      {/* Status */}
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error.message}</p>}
-
-      {/* Display results */}
-      <ul>
-        {data?.residents?.map((resident: any) => (
-          <li key={resident.id}>
-            {resident.firstname} {resident.middlename} {resident.lastname}
-          </li>
-        ))}
-      </ul>
+      <div>
+        <Table>
+          <TableCaption>A list of your recent invoices.</TableCaption>
+          <TableHeader>
+            <TableRow>
+              {headers.map((header: string, index: number) => (
+                <TableHead key={index}>Status</TableHead>
+              ))}
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {data?.residents?.map((residents: IResidents) => (
+              <TableRow key={residents.id}>
+                <TableCell>{residents.firstname}</TableCell>
+                <TableCell>{residents.middlename}</TableCell>
+                <TableCell>{residents.lastname}</TableCell>
+                <TableCell>{residents.age}</TableCell>
+                <TableCell>{residents.birthdate}</TableCell>
+                <TableCell>{residents.nationality}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        {/* Status */}
+        {loading && <p>Loading...</p>}
+        {error && <p>Error: {error.message}</p>}
+      </div>
     </div>
   );
 };

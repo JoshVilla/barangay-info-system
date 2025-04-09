@@ -25,4 +25,13 @@ export const resolvers = {
       return ResidentModel.find(query);
     },
   },
+  Mutation: {
+    addResident: async (_: any, { input }: { input: any }) => {
+      await connectToDatabase();
+
+      // Create a new resident
+      const newResident = new ResidentModel(input);
+      return newResident.save();
+    },
+  },
 };

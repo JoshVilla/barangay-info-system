@@ -11,14 +11,26 @@ export const typeDefs = gql`
     nationality: String!
   }
 
-  # Define the filter input type
   input ResidentFilter {
     firstname: String
     middlename: String
     lastname: String
   }
 
+  input AddResidentInput {
+    firstname: String!
+    middlename: String!
+    lastname: String!
+    age: Int!
+    birthdate: String!
+    nationality: String!
+  }
+
   type Query {
     residents(filter: ResidentFilter): [Resident!]!
+  }
+
+  type Mutation {
+    addResident(input: AddResidentInput!): Resident!
   }
 `;
