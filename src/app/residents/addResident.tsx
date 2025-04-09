@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -21,6 +21,9 @@ import {
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
+import { useMutation } from "@apollo/client";
+import { ADD_RESIDENT } from "@/graphql/mutations/residents/addResidents";
+import { toast } from "sonner";
 
 const residentSchema = z.object({
   firstname: z.string().min(1, "First name is required"),
@@ -36,7 +39,13 @@ const residentSchema = z.object({
 
 type ResidentForm = z.infer<typeof residentSchema>;
 
-const AddResident = () => {
+interface Props {
+  refetch: () => void;
+}
+
+const AddResident = ({ refetch }: Props) => {
+  const [addResident, { loading, error }] = useMutation(ADD_RESIDENT);
+  const [openDialog, setOpenDialog] = useState(false);
   const form = useForm<ResidentForm>({
     resolver: zodResolver(residentSchema),
     defaultValues: {
@@ -49,13 +58,25 @@ const AddResident = () => {
     },
   });
 
-  const onSubmit = (values: ResidentForm) => {
-    console.log("Submitted values:", values);
-    // call addResident mutation here
+  const onSubmit = async (values: ResidentForm) => {
+    try {
+      // call addResident mutation here
+      const { data } = await addResident({
+        variables: {
+          input: values,
+        },
+      });
+      form.reset();
+      setOpenDialog(false);
+      refetch();
+      toast(data.addResident.message);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <Dialog>
+    <Dialog open={openDialog} onOpenChange={setOpenDialog}>
       <DialogTrigger asChild>
         <Button variant="outline">
           <Plus className="mr-2 h-4 w-4" /> Add Resident
@@ -151,7 +172,9 @@ const AddResident = () => {
             />
 
             <DialogFooter>
-              <Button type="submit">Add</Button>
+              <Button type="submit" size="sm">
+                {loading ? "Adding" : "Add"}
+              </Button>
             </DialogFooter>
           </form>
         </Form>

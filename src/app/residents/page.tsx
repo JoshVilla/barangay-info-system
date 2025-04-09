@@ -17,6 +17,7 @@ import {
 import { headers } from "./tableProps";
 import { IResidents } from "@/graphql/queries/residents/responseTypes";
 import AddResident from "./addResident";
+import Loader from "@/components/loader";
 
 const Page = () => {
   // Filter state
@@ -27,7 +28,8 @@ const Page = () => {
   });
 
   // useLazyQuery instead of useQuery
-  const [getResidents, { loading, error, data }] = useLazyQuery(GET_RESIDENTS);
+  const [getResidents, { loading, error, data, refetch }] =
+    useLazyQuery(GET_RESIDENTS);
 
   // Update filter state on input
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,16 +94,16 @@ const Page = () => {
         <Button size="sm" onClick={handleReset}>
           Reset Filters
         </Button>
-        <AddResident />
+        <AddResident refetch={refetch} />
       </div>
 
       <div>
         <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
+          {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
           <TableHeader>
             <TableRow>
               {headers.map((header: string, index: number) => (
-                <TableHead key={index}>Status</TableHead>
+                <TableHead key={index}>{header}</TableHead>
               ))}
             </TableRow>
           </TableHeader>
@@ -119,7 +121,7 @@ const Page = () => {
           </TableBody>
         </Table>
         {/* Status */}
-        {loading && <p>Loading...</p>}
+        {loading && <Loader />}
         {error && <p>Error: {error.message}</p>}
       </div>
     </div>

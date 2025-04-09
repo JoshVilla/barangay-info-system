@@ -17,6 +17,11 @@ export const typeDefs = gql`
     lastname: String
   }
 
+  type AddResidentResponse {
+    message: String!
+    resident: Resident!
+  }
+
   input AddResidentInput {
     firstname: String!
     middlename: String!
@@ -31,6 +36,6 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    addResident(input: AddResidentInput!): Resident!
+    addResident(input: AddResidentInput!): AddResidentResponse!
   }
 `;
