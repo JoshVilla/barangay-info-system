@@ -37,5 +37,14 @@ export const resolvers = {
         resident: savedResident,
       };
     },
+    deleteResident: async (_: any, { id }: { id: string }) => {
+      await connectToDatabase();
+
+      await ResidentModel.findByIdAndDelete(id);
+
+      return {
+        message: "Resident deleted successfully",
+      };
+    },
   },
 };

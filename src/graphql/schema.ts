@@ -31,11 +31,16 @@ export const typeDefs = gql`
     nationality: String!
   }
 
+  type DeleteResidentResponse {
+    message: String!
+  }
+
   type Query {
     residents(filter: ResidentFilter): [Resident!]!
   }
 
   type Mutation {
     addResident(input: AddResidentInput!): AddResidentResponse!
+    deleteResident(id: ID!): DeleteResidentResponse!
   }
 `;

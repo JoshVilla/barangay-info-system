@@ -54,13 +54,12 @@ const AddResident = ({ refetch }: Props) => {
       lastname: "",
       age: 0,
       birthdate: "",
-      nationality: "",
+      nationality: "Filipino",
     },
   });
 
   const onSubmit = async (values: ResidentForm) => {
     try {
-      // call addResident mutation here
       const { data } = await addResident({
         variables: {
           input: values,
@@ -173,7 +172,7 @@ const AddResident = ({ refetch }: Props) => {
 
             <DialogFooter>
               <Button type="submit" size="sm">
-                {loading ? "Adding" : "Add"}
+                {loading ? "Adding..." : "Add"}
               </Button>
             </DialogFooter>
           </form>

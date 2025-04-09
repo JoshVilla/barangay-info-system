@@ -18,6 +18,7 @@ import { headers } from "./tableProps";
 import { IResidents } from "@/graphql/queries/residents/responseTypes";
 import AddResident from "./addResident";
 import Loader from "@/components/loader";
+import DeleteResident from "./deleteResident";
 
 const Page = () => {
   // Filter state
@@ -69,7 +70,7 @@ const Page = () => {
           name="firstname"
           value={filter.firstname}
           onChange={handleChange}
-          placeholder="Filter by First Name"
+          placeholder="Enter First Name"
           className="w-64"
         />
         <Input
@@ -77,7 +78,7 @@ const Page = () => {
           name="middlename"
           value={filter.middlename}
           onChange={handleChange}
-          placeholder="Filter by Middle Name"
+          placeholder="Enter Middle Name"
           className="w-64"
         />
         <Input
@@ -85,7 +86,7 @@ const Page = () => {
           name="lastname"
           value={filter.lastname}
           onChange={handleChange}
-          placeholder="Filter by Last Name"
+          placeholder="Enter Last Name"
           className="w-64"
         />
         <Button size="sm" onClick={handleSearch}>
@@ -116,6 +117,9 @@ const Page = () => {
                 <TableCell>{residents.age}</TableCell>
                 <TableCell>{residents.birthdate}</TableCell>
                 <TableCell>{residents.nationality}</TableCell>
+                <TableCell>
+                  <DeleteResident id={residents.id} refetch={refetch} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

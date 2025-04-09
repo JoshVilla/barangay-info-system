@@ -5,4 +5,5 @@ export const headers: string[] = [
   "Age",
   "Birthplace",
   "Nationality",
+  "Actions",
 ];
