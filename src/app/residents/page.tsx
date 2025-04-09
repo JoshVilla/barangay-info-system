@@ -89,10 +89,10 @@ const Page = () => {
           placeholder="Enter Last Name"
           className="w-64"
         />
-        <Button size="sm" onClick={handleSearch}>
+        <Button size="sm" onClick={handleSearch} className="cursor-pointer">
           Search
         </Button>
-        <Button size="sm" onClick={handleReset}>
+        <Button size="sm" onClick={handleReset} className="cursor-pointer">
           Reset Filters
         </Button>
         <AddResident refetch={refetch} />

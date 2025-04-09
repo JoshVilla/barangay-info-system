@@ -91,10 +91,12 @@ const AddResident = ({ refetch }: Props) => {
     }
   };
 
+  if (error) toast(error.message);
+
   return (
     <Dialog open={openDialog} onOpenChange={setOpenDialog}>
       <DialogTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" size="sm">
           <Plus className="mr-2 h-4 w-4" /> Add Resident
         </Button>
       </DialogTrigger>

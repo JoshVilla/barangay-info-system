@@ -5,7 +5,7 @@ const Loader = () => {
   return (
     <div className="w-full text-center  my-10">
       <LoaderCircle className="animate-spin mx-auto" />
-      <p>Loading</p>
+      <p>Fetching Data</p>
     </div>
   );
 };

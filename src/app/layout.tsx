@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "./client-layout";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -35,7 +39,10 @@ export default function RootLayout({
           <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
-              <div className="p-2">{children}</div>
+              <div className="p-2">
+                <SidebarTrigger className="ml-1" />
+                <div>{children}</div>
+              </div>
             </SidebarInset>
           </SidebarProvider>
         </ClientLayout>
