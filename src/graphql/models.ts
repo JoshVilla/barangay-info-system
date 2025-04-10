@@ -11,6 +11,12 @@ const ResidentSchema = new mongoose.Schema({
   gender: String,
   civilStatus: String,
   religion: String,
+  contactNumber: String,
+  email: String,
+  fatherName: String,
+  motherName: String,
+  spouseName: String,
+  numberOfChildren: Number,
 });
 
 export const ResidentModel =

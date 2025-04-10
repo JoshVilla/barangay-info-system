@@ -12,6 +12,14 @@ export const ADD_RESIDENT = gql`
         age
         birthdate
         nationality
+        civilStatus
+        religion
+        contactNumber
+        email
+        fatherName
+        motherName
+        spouseName
+        numberOfChildren
       }
     }
   }

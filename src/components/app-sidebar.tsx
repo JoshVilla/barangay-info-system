@@ -34,12 +34,7 @@ const data = {
     email: "Brangay Laurel",
     avatar: "/assets/cordon-logo.png",
   },
-  teams: [
-    {
-      name: "Barangay Management System",
-      plan: "Barangay Laurel",
-    },
-  ],
+
   // navMain: [
   //   {
   //     title: "Playground",
@@ -75,7 +70,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <TeamSwitcher />
       </SidebarHeader>
       <SidebarContent>
         {/* <NavMain items={data.navMain} /> */}
