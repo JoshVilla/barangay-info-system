@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const ADD_RESIDENT = gql`
-  mutation AddResident($input: AddResidentInput!) {
+  mutation AddResident($input: ResidentInput!) {
     addResident(input: $input) {
       message
       resident {

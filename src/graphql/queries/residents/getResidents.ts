@@ -10,6 +10,16 @@ export const GET_RESIDENTS = gql`
       age
       birthdate
       nationality
+      religion
+      contactNumber
+      email
+      civilStatus
+      gender
+      suffix
+      fatherName
+      motherName
+      spouseName
+      numberOfChildren
     }
   }
 `;

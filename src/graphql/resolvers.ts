@@ -53,5 +53,19 @@ export const resolvers = {
         message: "Resident deleted successfully",
       };
     },
+
+    editResident: async (_: any, { input }: { input: any }) => {
+      await connectToDatabase();
+
+      const { id, ...rest } = input;
+      await ResidentModel.findByIdAndUpdate(id, rest, {
+        new: true,
+        runValidators: true,
+      });
+
+      return {
+        message: "Resident updated successfully",
+      };
+    },
   },
 };

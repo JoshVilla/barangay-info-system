@@ -19,6 +19,8 @@ import { IResidents } from "@/graphql/queries/residents/responseTypes";
 import AddResident from "./addResident";
 import Loader from "@/components/loader";
 import DeleteResident from "./deleteResident";
+import { Pencil } from "lucide-react";
+import EditResident from "./editResident";
 
 const Page = () => {
   // Filter state
@@ -119,6 +121,7 @@ const Page = () => {
                 <TableCell>{residents.nationality}</TableCell>
                 <TableCell>
                   <DeleteResident id={residents.id} refetch={refetch} />
+                  <EditResident refetch={refetch} records={residents} />
                 </TableCell>
               </TableRow>
             ))}

@@ -6,4 +6,14 @@ export interface IResidents {
   age: number;
   birthdate: string;
   nationality: string;
+  religion: string;
+  contactNumber: string;
+  email: string;
+  civilStatus: string;
+  gender: string;
+  suffix: string;
+  fatherName: string;
+  motherName: string;
+  spouseName: string;
+  numberOfChildren: number;
 }

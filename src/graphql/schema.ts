@@ -32,7 +32,8 @@ export const typeDefs = gql`
     resident: Resident!
   }
 
-  input AddResidentInput {
+  input ResidentInput {
+    id: String #optional
     firstname: String!
     middlename: String!
     lastname: String!
@@ -55,12 +56,17 @@ export const typeDefs = gql`
     message: String!
   }
 
+  type EditResidentResponse {
+    message: String!
+  }
+
   type Query {
     residents(filter: ResidentFilter): [Resident!]!
   }
 
   type Mutation {
-    addResident(input: AddResidentInput!): AddResidentResponse!
+    addResident(input: ResidentInput!): AddResidentResponse!
     deleteResident(id: ID!): DeleteResidentResponse!
+    editResident(input: ResidentInput!): EditResidentResponse!
   }
 `;
