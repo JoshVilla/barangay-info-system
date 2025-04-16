@@ -108,7 +108,7 @@ const AddResident = ({ refetch }: Props) => {
   return (
     <Dialog open={openDialog} onOpenChange={setOpenDialog}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button variant="outline" size="sm" className="cursor-pointer">
           <Plus className="mr-2 h-4 w-4" /> Add Resident
         </Button>
       </DialogTrigger>

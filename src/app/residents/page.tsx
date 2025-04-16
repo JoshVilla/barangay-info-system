@@ -21,8 +21,10 @@ import Loader from "@/components/loader";
 import DeleteResident from "./deleteResident";
 import { Pencil } from "lucide-react";
 import EditResident from "./editResident";
+import { ImportExcelModal } from "@/components/importFile";
 
 const Page = () => {
+  const [importedData, setImportedData] = useState<any[]>([]);
   // Filter state
   const [filter, setFilter] = useState({
     firstname: "",
@@ -55,6 +57,11 @@ const Page = () => {
       lastname: "",
     });
     getResidents({ variables: { filter: {} } });
+  };
+
+  const handleDataImport = (data: any[]) => {
+    console.log("Imported data:", data);
+    setImportedData(data); // Process or display data as needed
   };
 
   useEffect(() => {
@@ -98,6 +105,7 @@ const Page = () => {
           Reset Filters
         </Button>
         <AddResident refetch={refetch} />
+        <ImportExcelModal onDataImport={handleDataImport} />
       </div>
 
       <div>
